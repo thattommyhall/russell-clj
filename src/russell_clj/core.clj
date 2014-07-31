@@ -14,15 +14,12 @@
    (take-while #(not= c %) (drop 1 (iterate qwerty2dvorak c)))
    [c]))
 
-(defn convert [s]
-  (apply str (map qwerty2dvorak s)))
-
 (defn str-cycle [s]
   (concat
    (take-while #(not= s %) (drop 1 (iterate convert s)))
    [s]))
 
-(def cycle-length (comp count cycle))
+
 (defn -main [& args]
   (let [target (clojure.string/join " " args)
         result (str-cycle target)]
